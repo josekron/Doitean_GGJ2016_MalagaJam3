@@ -4,7 +4,7 @@ using System.Collections;
 public class CameraControl : MonoBehaviour
 {
     public float speed = 2;
-    public float maxLeft, maxRight;
+    public float maxLeft, maxRight, maxHeight;
 
     // Use this for initialization
     void Start()
@@ -30,6 +30,16 @@ public class CameraControl : MonoBehaviour
         {
             this.gameObject.transform.position += Vector3.left * speed * Time.deltaTime;
             Debug.Log("left");
+        }
+        else if ((Screen.height - position.y) < 5 && this.gameObject.transform.position.y < maxHeight)
+        {
+            this.gameObject.transform.position += Vector3.up * speed * Time.deltaTime;
+            Debug.Log("top");
+        }
+        else if (position.y < 5 && this.gameObject.transform.position.y > 0)
+        {
+            this.gameObject.transform.position += Vector3.down * speed * Time.deltaTime;
+            Debug.Log("bot");
         }
     }
 }

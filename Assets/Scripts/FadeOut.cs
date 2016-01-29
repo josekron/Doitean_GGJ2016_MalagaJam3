@@ -1,28 +1,31 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class FadeOut : MonoBehaviour
 {
-    public float max, min, time;
-    private Renderer rend;
-    // Use this for initialization
+    public float min = 0.0f;
+    public float max = 1f;
+    public float duration = 5.0f;
+
+    private float startTime;
+    private SpriteRenderer sprite;
+
     void Start()
     {
-        rend = this.GetComponent<SpriteRenderer>();
-        fade();
+        //Get sprite renderer
+        sprite = this.GetComponent<SpriteRenderer>();
+        //Get the time
+        startTime = Time.time;
     }
 
     void Update()
     {
-        //fade();
+
     }
 
-    void fade()
+    //Fade out/in the sprite
+    public void fade()
     {
-        /*Color color = rend.material.color;
-        color.a = new Color(1f, 1f, 1f, Mathf.SmoothStep(max, min, time));*/
-        Color col = new Color(1f, 1f, 1f, Mathf.SmoothStep(max, min, time));
-        rend.material.color = col;
-
+        float t = (Time.time - startTime) / duration;
+        sprite.color = new Color(1f, 1f, 1f, Mathf.SmoothStep(min, max, t));
     }
 }
