@@ -16,6 +16,7 @@ public class CameraControl : MonoBehaviour
     void Start()
     {
         //backgroundBot = GameObject.Find("CanvasBackground").GetComponentInChildren<RawImage>();
+
         camera = this.GetComponent<Camera>();
         cursor = GameObject.FindGameObjectWithTag("Cursor");
     }
@@ -129,6 +130,11 @@ public class CameraControl : MonoBehaviour
     {
         camera.orthographicSize = 5;
         stop = false;
+    }
+
+    public static void StartStop(bool state)
+    {
+        stop = state;
     }
 
 }
