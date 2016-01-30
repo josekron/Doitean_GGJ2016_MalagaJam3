@@ -29,11 +29,11 @@ public class MainLight : MonoBehaviour
 
     private void CheckIntensity()
     {
-        if (light.intensity == 1)
+        if (light.intensity >= 1)
         {
             turnOn = false;
         }
-        else if (light.intensity == 0)
+        else if (light.intensity <= 0)
         {
             turnOff = false;
         }

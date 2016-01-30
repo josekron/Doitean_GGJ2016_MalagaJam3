@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.Sprites;
 
 public class CameraControl : MonoBehaviour
 {
-    public float speed = 2, backgroundBotSpeed, backgroundMiddleSpeed, backgroundTopSpeed;
+    public float speed = 2, backgroundBotSpeed, backgroundMiddleSpeed, backgroundTopSpeed, timer;
     public float maxLeft, maxRight, maxHeight, MaxBot;
     private static bool stop = false;
     private RawImage backgroundBot, backgroundMiddle, backgroundTop;
     private GameObject cursor;
     private static Camera camera;
+    private Sprite current, spr;
 
 
     // Use this for initialization
@@ -18,11 +20,14 @@ public class CameraControl : MonoBehaviour
         //backgroundBot = GameObject.Find("CanvasBackground").GetComponentInChildren<RawImage>();
         camera = this.GetComponent<Camera>();
         cursor = GameObject.FindGameObjectWithTag("Cursor");
+        spr = Resources.Load<Sprite>("cursor2");
+        current = cursor.GetComponent<SpriteRenderer>().sprite;
     }
 
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
         if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
         {
             MoveMouse();
@@ -34,6 +39,15 @@ public class CameraControl : MonoBehaviour
         if (!stop)
         {
             CheckPosition();
+        }
+        if (Input.GetMouseButton(0))
+        {
+            cursor.GetComponent<SpriteRenderer>().sprite = spr;
+            timer = 0;
+        }
+        if (timer >= 0.2)
+        {
+            cursor.GetComponent<SpriteRenderer>().sprite = current;
         }
     }
 
