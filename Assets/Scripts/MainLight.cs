@@ -29,7 +29,7 @@ public class MainLight : MonoBehaviour
 
     private void CheckIntensity()
     {
-        if (light.intensity >= 1)
+        if (light.intensity >= 0.78)
         {
             turnOn = false;
         }
