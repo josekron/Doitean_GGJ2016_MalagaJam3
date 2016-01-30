@@ -6,14 +6,17 @@ public class CameraControl : MonoBehaviour
 {
     public float speed = 2, backgroundBotSpeed, backgroundMiddleSpeed, backgroundTopSpeed;
     public float maxLeft, maxRight, maxHeight;
+    private static bool stop = false;
     private RawImage backgroundBot, backgroundMiddle, backgroundTop;
     private GameObject cursor;
+    private static Camera camera;
 
 
     // Use this for initialization
     void Start()
     {
         //backgroundBot = GameObject.Find("CanvasBackground").GetComponentInChildren<RawImage>();
+        camera = this.GetComponent<Camera>();
         cursor = GameObject.FindGameObjectWithTag("Cursor");
     }
 
@@ -28,7 +31,11 @@ public class CameraControl : MonoBehaviour
         {
             MovePad();
         }
-        CheckPosition();
+        if (!stop)
+        {
+            CheckPosition();
+        }
+
     }
 
     void MovePad()
@@ -40,20 +47,20 @@ public class CameraControl : MonoBehaviour
 
     void MoveMouse()
     {
-        Vector3 position = this.GetComponent<Camera>().ScreenToWorldPoint(Input.mousePosition);
+        Vector3 position = camera.ScreenToWorldPoint(Input.mousePosition);
         position.z += 10;
         cursor.transform.position = position;
     }
 
     private void CheckPosition()
     {
-        Vector3 screenPos = this.GetComponent<Camera>().WorldToScreenPoint(cursor.transform.position);
+        Vector3 screenPos = camera.WorldToScreenPoint(cursor.transform.position);
 
         if (screenPos.x < 1)
         {
             MoveLeft();
         }
-        else if ((this.GetComponent<Camera>().pixelWidth - screenPos.x) < 1)
+        else if ((camera.pixelWidth - screenPos.x) < 1)
         {
             MoveRight();
         }
@@ -61,7 +68,7 @@ public class CameraControl : MonoBehaviour
         {
             MoveDown();
         }
-        else if ((this.GetComponent<Camera>().pixelHeight - screenPos.y) < 1)
+        else if ((camera.pixelHeight - screenPos.y) < 1)
         {
             MoveUp();
         }
@@ -110,4 +117,18 @@ public class CameraControl : MonoBehaviour
             Debug.Log("bot");
         }
     }
+
+    public static void LookAtCharacter(GameObject character)
+    {
+        stop = true;
+        camera.transform.LookAt(character.transform);
+        camera.orthographicSize = 1;
+    }
+
+    public static void StopLook()
+    {
+        camera.orthographicSize = 5;
+        stop = false;
+    }
+
 }
