@@ -3,6 +3,8 @@ using System.Collections;
 
 public class ShowDialogue : MonoBehaviour {
 
+    public GameObject dialogue;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -15,7 +17,8 @@ public class ShowDialogue : MonoBehaviour {
 
     void OnMouseDown()
     {
-        GameObject dialogue = this.transform.Find("DialoguePrefab").gameObject;
+        Debug.Log("acitvate dialogue: " + dialogue.name);
+        //GameObject dialogue = this.transform.Find("DialoguePrefab").gameObject;
         dialogue.SetActive(true);
 
     }

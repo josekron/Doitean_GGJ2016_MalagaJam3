@@ -8,7 +8,7 @@ public class FadeGUI : MonoBehaviour {
 
         FadeNpc scriptFadeNpc = father.GetComponent<FadeNpc>();
         scriptFadeNpc.activateFade();*/
-
+        Debug.Log("FadeGUI - FadeMe()");
         StartCoroutine(DoFade());
     }
 
@@ -19,8 +19,15 @@ public class FadeGUI : MonoBehaviour {
             canvasGroup.alpha -= Time.deltaTime / 2;
             yield return null;
         }
-        //GameObject father = transform.root.gameObject;
-        GameObject npc = this.transform.Find("npc1").gameObject;
+        GameObject father = transform.root.gameObject;
+        Debug.Log("father: " + father.name);
+        GameObject npc = father.transform.Find("spriteNpc").gameObject;
+        Debug.Log("npc: " + npc.name);
+
+        if (npc == null)
+            Debug.Log("cuervo not found");
+        else
+            Debug.Log("cuervo found: " + npc.name);
 
         FadeNpc scriptFadeNpc = npc.GetComponent<FadeNpc>();
         scriptFadeNpc.activateFade();
