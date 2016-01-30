@@ -1,19 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ShowDialogue : MonoBehaviour {
+public class ShowDialogue : MonoBehaviour
+{
 
     public GameObject dialogue;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     void OnMouseDown()
     {
@@ -21,5 +24,16 @@ public class ShowDialogue : MonoBehaviour {
         //GameObject dialogue = this.transform.Find("DialoguePrefab").gameObject;
         dialogue.SetActive(true);
 
+    }
+
+    void OnMouseEnter()
+    {
+        CursorController.DoAnimation();
+    }
+
+    void OnMouseExit()
+    {
+        Debug.Log("DAsda");
+        CursorController.StopAnimation();
     }
 }

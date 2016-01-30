@@ -60,7 +60,7 @@ public class CameraControl : MonoBehaviour
         {
             MoveLeft();
         }
-        else if ((camera.pixelWidth - screenPos.x) < 1)
+        else if ((camera.pixelWidth - screenPos.x) < 1 || screenPos.x == camera.pixelWidth - 1)
         {
             MoveRight();
         }
@@ -68,7 +68,7 @@ public class CameraControl : MonoBehaviour
         {
             MoveDown();
         }
-        else if ((camera.pixelHeight - screenPos.y) < 1)
+        else if ((camera.pixelHeight - screenPos.y) < 1 || screenPos.y == camera.pixelHeight - 1)
         {
             MoveUp();
         }
