@@ -33,7 +33,6 @@ public class ShowDialogue : MonoBehaviour
 
     void OnMouseExit()
     {
-        Debug.Log("DAsda");
         CursorController.StopAnimation();
     }
 }
