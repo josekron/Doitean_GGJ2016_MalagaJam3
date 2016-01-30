@@ -15,8 +15,6 @@ public class ShowDialogue : MonoBehaviour {
 
     void OnMouseDown()
     {
-
-        Debug.Log("Show dialogue");
         GameObject dialogue = this.transform.Find("DialoguePrefab").gameObject;
         dialogue.SetActive(true);
 
