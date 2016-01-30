@@ -9,6 +9,9 @@ public class FadeGUI : MonoBehaviour {
         FadeNpc scriptFadeNpc = father.GetComponent<FadeNpc>();
         scriptFadeNpc.activateFade();*/
         Debug.Log("FadeGUI - FadeMe()");
+        GameObject father = transform.root.gameObject;
+        AudioSource[] audioSources = father.GetComponents<AudioSource>();
+        audioSources[1].Play();
         StartCoroutine(DoFade());
     }
 

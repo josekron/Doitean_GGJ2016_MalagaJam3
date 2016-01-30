@@ -6,10 +6,15 @@ public class ShowDialogue : MonoBehaviour
 
     public GameObject dialogue;
 
+    private AudioSource[] audioSources;
+    private bool isSounded;
+
     // Use this for initialization
     void Start()
     {
-
+        GameObject father = transform.root.gameObject;
+        audioSources = father.GetComponents<AudioSource>();
+        isSounded = false;
     }
 
     // Update is called once per frame
@@ -20,8 +25,11 @@ public class ShowDialogue : MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log("acitvate dialogue: " + dialogue.name);
-        //GameObject dialogue = this.transform.Find("DialoguePrefab").gameObject;
+        if (!isSounded) {
+            this.audioSources[0].Play();
+            isSounded = true;
+        }
+        
         dialogue.SetActive(true);
 
     }
