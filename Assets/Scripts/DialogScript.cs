@@ -14,6 +14,11 @@ public class DialogScript : MonoBehaviour {
 	}
 
     public void OnClick() {
-        Debug.Log("wololo");
+        //GameObject father = transform.root.gameObject;
+        //GameObject dialogue = father.transform.Find("DialoguePrefab").gameObject;
+        //dialogue.SetActive(false);
+
+        GameObject ob = transform.parent.parent.parent.parent.gameObject;
+        ob.SetActive(false);
     }
 }
