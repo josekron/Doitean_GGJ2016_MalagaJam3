@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class CameraControl : MonoBehaviour
 {
     public float speed = 2, backgroundBotSpeed, backgroundMiddleSpeed, backgroundTopSpeed;
-    public float maxLeft, maxRight, maxHeight;
+    public float maxLeft, maxRight, maxHeight, MaxBot;
     private static bool stop = false;
     private RawImage backgroundBot, backgroundMiddle, backgroundTop;
     private GameObject cursor;
@@ -16,7 +16,6 @@ public class CameraControl : MonoBehaviour
     void Start()
     {
         //backgroundBot = GameObject.Find("CanvasBackground").GetComponentInChildren<RawImage>();
-
         camera = this.GetComponent<Camera>();
         cursor = GameObject.FindGameObjectWithTag("Cursor");
     }
@@ -24,7 +23,7 @@ public class CameraControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis("Horizontal") == 0)
+        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
         {
             MoveMouse();
         }
@@ -36,13 +35,13 @@ public class CameraControl : MonoBehaviour
         {
             CheckPosition();
         }
-
     }
 
     void MovePad()
     {
-        float x = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-        float y = Input.GetAxis("Vertical") * speed * Time.deltaTime;
+        float x, y;
+        x = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+        y = Input.GetAxis("Vertical") * speed * Time.deltaTime;
         cursor.transform.Translate(x, y, 0);
     }
 
@@ -112,7 +111,7 @@ public class CameraControl : MonoBehaviour
 
     private void MoveDown()
     {
-        if (this.gameObject.transform.position.y > 0)
+        if (this.gameObject.transform.position.y > MaxBot)
         {
             this.gameObject.transform.position += Vector3.down * speed * Time.deltaTime;
             Debug.Log("bot");
