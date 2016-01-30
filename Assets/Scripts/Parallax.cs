@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Parallax : MonoBehaviour
 {
-
+    //Mover x offset UV Rect
     public float speed = 2;
     private Vector2 offSet;
     private Renderer rend;
