@@ -27,8 +27,8 @@ public class QuestionsNpc : MonoBehaviour {
             }
             
         }
-        else { 
-            transform.parent.parent.parent.parent.parent.gameObject.SetActive(false);
+        else {
+            Debug.Log("finish - call bad finish video");
         }
         
     }

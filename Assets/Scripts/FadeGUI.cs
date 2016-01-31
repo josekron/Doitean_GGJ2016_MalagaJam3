@@ -36,7 +36,7 @@ public class FadeGUI : MonoBehaviour {
         scriptFadeNpc.activateFade();
 
         canvasGroup.interactable = false;
-
+        ListNpcScript.checkFinalQuestion();
         
 
         //father.SetActive(false);
