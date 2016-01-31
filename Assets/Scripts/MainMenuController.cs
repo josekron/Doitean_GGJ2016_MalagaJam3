@@ -11,13 +11,11 @@ public class MainMenuController : MonoBehaviour
         CameraControl.StartStop(true);
         menu = GameObject.Find("CanvasMenu");
         credits = GameObject.Find("CanvasCredits");
-        controls = GameObject.Find("CanvasControls");
         DisableCanvas();
     }
 
     void DisableCanvas()
     {
-        controls.SetActive(false);
         credits.SetActive(false);
     }
 
@@ -28,11 +26,6 @@ public class MainMenuController : MonoBehaviour
             if (credits.activeSelf)
             {
                 credits.SetActive(false);
-                menu.SetActive(true);
-            }
-            else if (controls.activeSelf)
-            {
-                controls.SetActive(false);
                 menu.SetActive(true);
             }
             else if (!menu.activeSelf)
@@ -64,12 +57,6 @@ public class MainMenuController : MonoBehaviour
     {
         credits.SetActive(false);
         menu.SetActive(true);
-    }
-
-    public void ShowControls()
-    {
-        menu.SetActive(false);
-        controls.SetActive(true);
     }
 
     public void ExitGame()
