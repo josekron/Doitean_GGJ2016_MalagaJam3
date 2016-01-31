@@ -23,7 +23,7 @@ public class FadeInGUI : MonoBehaviour {
         }
 
         ListNpcScript.addNpc(transform.root.gameObject);
-        List<GameObject> npcs = ListNpcScript.getNpcs();
+        /*List<GameObject> npcs = ListNpcScript.getNpcs();
         foreach(GameObject go in npcs){
             Debug.Log("NPC: "+go.name);
         }
@@ -31,7 +31,7 @@ public class FadeInGUI : MonoBehaviour {
         GameObject ob = ListNpcScript.getNpc("NPC");
 
         if (ob != null)
-            Debug.Log("Search: "+ob.name);
+            Debug.Log("Search: "+ob.name);*/
 
         yield return null;
     }

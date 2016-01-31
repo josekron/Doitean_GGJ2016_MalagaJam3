@@ -26,13 +26,13 @@ public class ListNpcScript : MonoBehaviour {
 
     public static void checkFinalQuestion()
     {
-        if (npcs.Count >= 7)
+        if (npcs.Count >= 1)
         {
             if (!isShowed)
             {
                 isShowed = true;
                 quest.SetActive(true);
-                CameraControl.StartStop(true);
+                //CameraControl.StartStop(true);
 
             }
         }

@@ -64,7 +64,7 @@ public class CameraControl : MonoBehaviour
     private void CheckPosition()
     {
         Vector3 screenPos = camera.WorldToScreenPoint(cursor.transform.position);
-        Debug.Log(screenPos);
+        //Debug.Log(screenPos);
         if (screenPos.x < 0.1)
         {
             MoveLeft();
@@ -140,12 +140,12 @@ public class CameraControl : MonoBehaviour
             Debug.Log("bot");
         }
         else
-        if (this.gameObject.transform.position.y > MaxBotNight && night)
-        {
-            this.gameObject.transform.position += Vector3.down * speed * Time.deltaTime;
-            this.cursor.transform.position += Vector3.down * speed * Time.deltaTime;
-            Debug.Log("bot");
-        }
+            if (this.gameObject.transform.position.y > MaxBotNight && night)
+            {
+                this.gameObject.transform.position += Vector3.down * speed * Time.deltaTime;
+                this.cursor.transform.position += Vector3.down * speed * Time.deltaTime;
+                Debug.Log("bot");
+            }
     }
 
     public static void LookAtCharacter(GameObject character)
@@ -168,13 +168,19 @@ public class CameraControl : MonoBehaviour
 
     public void ChangeTime()
     {
+        AudioSource[] audioSources = this.GetComponents<AudioSource>();
+
         if (night && !stop)
         {
+            audioSources[1].Stop();
+            audioSources[0].Play();
             night = false;
             camera.gameObject.transform.position = new Vector3(-30.1f, 2.29f, -10);
         }
         else if (!night && !stop)
         {
+            audioSources[0].Stop();
+            audioSources[1].Play();
             night = true;
             camera.gameObject.transform.position = new Vector3(97, 2.29f, -10);
         }

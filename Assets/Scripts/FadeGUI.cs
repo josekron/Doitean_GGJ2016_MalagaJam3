@@ -37,8 +37,8 @@ public class FadeGUI : MonoBehaviour {
 
         canvasGroup.interactable = false;
         ListNpcScript.checkFinalQuestion();
-        
 
+        Destroy(father);
         //father.SetActive(false);
         yield return null;
     }

@@ -24,11 +24,14 @@ public class QuestionsNpc : MonoBehaviour {
             }
             else {
                 Debug.Log("finish - call finish video");
+                Application.LoadLevel("GoodFinal");
+
             }
             
         }
         else {
             Debug.Log("finish - call bad finish video");
+            Application.LoadLevel("BadFinal");
         }
         
     }
