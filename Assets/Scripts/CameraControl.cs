@@ -7,6 +7,8 @@ public class CameraControl : MonoBehaviour
 {
     public float speed = 2, timer;
     public float maxLeft, maxRight, maxHeight, MaxBot;
+    public float maxLeftNight, maxRightNight, maxHeightNight, MaxBotNight;
+    public static bool night = false;
     private static bool stop = false;
     private GameObject cursor;
     private static Camera camera;
@@ -62,7 +64,7 @@ public class CameraControl : MonoBehaviour
     private void CheckPosition()
     {
         Vector3 screenPos = camera.WorldToScreenPoint(cursor.transform.position);
-
+        Debug.Log(screenPos);
         if (screenPos.x < 0.1)
         {
             MoveLeft();
@@ -83,7 +85,13 @@ public class CameraControl : MonoBehaviour
 
     private void MoveLeft()
     {
-        if (this.gameObject.transform.position.x >= maxLeft)
+        if (this.gameObject.transform.position.x >= maxLeft && !night)
+        {
+            this.gameObject.transform.position += Vector3.left * speed * Time.deltaTime;
+            this.cursor.transform.position += Vector3.left * speed * Time.deltaTime;
+            Debug.Log("left");
+        }
+        else if (this.gameObject.transform.position.x >= maxLeftNight && night)
         {
             this.gameObject.transform.position += Vector3.left * speed * Time.deltaTime;
             this.cursor.transform.position += Vector3.left * speed * Time.deltaTime;
@@ -93,7 +101,13 @@ public class CameraControl : MonoBehaviour
 
     private void MoveRight()
     {
-        if (this.gameObject.transform.position.x < maxRight)
+        if (this.gameObject.transform.position.x < maxRight && !night)
+        {
+            this.gameObject.transform.position += Vector3.right * speed * Time.deltaTime;
+            this.cursor.transform.position += Vector3.right * speed * Time.deltaTime;
+            Debug.Log("right");
+        }
+        else if (this.gameObject.transform.position.x < maxRightNight && night)
         {
             this.gameObject.transform.position += Vector3.right * speed * Time.deltaTime;
             this.cursor.transform.position += Vector3.right * speed * Time.deltaTime;
@@ -103,7 +117,13 @@ public class CameraControl : MonoBehaviour
 
     private void MoveUp()
     {
-        if (this.gameObject.transform.position.y < maxHeight)
+        if (this.gameObject.transform.position.y < maxHeight && !night)
+        {
+            this.gameObject.transform.position += Vector3.up * speed * Time.deltaTime;
+            this.cursor.transform.position += Vector3.up * speed * Time.deltaTime;
+            Debug.Log("top");
+        }
+        else if (this.gameObject.transform.position.y < maxHeightNight && night)
         {
             this.gameObject.transform.position += Vector3.up * speed * Time.deltaTime;
             this.cursor.transform.position += Vector3.up * speed * Time.deltaTime;
@@ -113,7 +133,14 @@ public class CameraControl : MonoBehaviour
 
     private void MoveDown()
     {
-        if (this.gameObject.transform.position.y > MaxBot)
+        if (this.gameObject.transform.position.y > MaxBot && !night)
+        {
+            this.gameObject.transform.position += Vector3.down * speed * Time.deltaTime;
+            this.cursor.transform.position += Vector3.down * speed * Time.deltaTime;
+            Debug.Log("bot");
+        }
+        else
+        if (this.gameObject.transform.position.y > MaxBotNight && night)
         {
             this.gameObject.transform.position += Vector3.down * speed * Time.deltaTime;
             this.cursor.transform.position += Vector3.down * speed * Time.deltaTime;
@@ -137,6 +164,20 @@ public class CameraControl : MonoBehaviour
     public static void StartStop(bool state)
     {
         stop = state;
+    }
+
+    public void ChangeTime()
+    {
+        if (night && !stop)
+        {
+            night = false;
+            camera.gameObject.transform.position = new Vector3(-30.1f, 2.29f, -10);
+        }
+        else if (!night && !stop)
+        {
+            night = true;
+            camera.gameObject.transform.position = new Vector3(97, 2.29f, -10);
+        }
     }
 
 }
