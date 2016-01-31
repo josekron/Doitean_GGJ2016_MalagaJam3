@@ -86,6 +86,7 @@ public class CameraControl : MonoBehaviour
         if (this.gameObject.transform.position.x >= maxLeft)
         {
             this.gameObject.transform.position += Vector3.left * speed * Time.deltaTime;
+            this.cursor.transform.position += Vector3.left * speed * Time.deltaTime;
             Debug.Log("left");
         }
     }
@@ -95,6 +96,7 @@ public class CameraControl : MonoBehaviour
         if (this.gameObject.transform.position.x < maxRight)
         {
             this.gameObject.transform.position += Vector3.right * speed * Time.deltaTime;
+            this.cursor.transform.position += Vector3.right * speed * Time.deltaTime;
             Debug.Log("right");
         }
     }
@@ -104,6 +106,7 @@ public class CameraControl : MonoBehaviour
         if (this.gameObject.transform.position.y < maxHeight)
         {
             this.gameObject.transform.position += Vector3.up * speed * Time.deltaTime;
+            this.cursor.transform.position += Vector3.up * speed * Time.deltaTime;
             Debug.Log("top");
         }
     }
@@ -113,6 +116,7 @@ public class CameraControl : MonoBehaviour
         if (this.gameObject.transform.position.y > MaxBot)
         {
             this.gameObject.transform.position += Vector3.down * speed * Time.deltaTime;
+            this.cursor.transform.position += Vector3.down * speed * Time.deltaTime;
             Debug.Log("bot");
         }
     }
